@@ -12,3 +12,11 @@ Core::Inventory *Core::Character::getInventory() const {
     return this->inventory;
 };
 
+
+bool Core::Character::isAlive() const {
+    return !this->isDead();
+};
+
+bool Core::Character::isDead() const {
+    return this->basicStats.hitPoints == 0;
+};

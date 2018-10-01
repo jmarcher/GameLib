@@ -60,7 +60,7 @@ namespace Core {
 
         bool afterActions();
 
-        void assertPreConditions() const;
+        virtual void assertPreConditions() const;
 
         void assertPostConditions() const;
     };

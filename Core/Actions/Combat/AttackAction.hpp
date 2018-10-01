@@ -17,7 +17,10 @@ namespace Core {
 
         void action() override {
             this->secondActor->setHP(this->secondActor->getHP() - 10);
-        };
+        }
+
+    protected:
+        void assertPreConditions() const override;;
     };
 };
 

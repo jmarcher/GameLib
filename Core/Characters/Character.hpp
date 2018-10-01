@@ -32,6 +32,10 @@ namespace Core {
 
         Inventory *getInventory() const;
 
+        bool isAlive() const;
+
+        bool isDead() const;
+
         unsigned int getHP() const {
             return basicStats.hitPoints;
         };

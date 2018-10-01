@@ -7,8 +7,10 @@
 
 #include <string>
 
+#include <stdexcept>
+
 namespace Core {
-    class Exception {
+    class Exception : public std::exception {
     public:
         Exception() {
             this->code = 0;

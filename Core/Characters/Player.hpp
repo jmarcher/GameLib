@@ -14,7 +14,6 @@ namespace Core {
         explicit Player() : Character(1, 100) {
         };
 
-
     protected:
         unsigned int dextery;
         unsigned int charm;
