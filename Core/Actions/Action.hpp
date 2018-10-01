@@ -8,6 +8,7 @@
 #include <list>
 #include "../Characters/Character.hpp"
 #include "Exceptions/ActionException.hpp"
+#include "../Exceptions/Handler.hpp"
 
 namespace Core {
     class Action {
@@ -20,25 +21,8 @@ namespace Core {
 
         void handle();
 
-        bool beforeAction() {
-            // We process all actions that are marked as preconditions
-            // we use the actions handle function for that.
-            for (auto const &action: this->preActions) {
-                action->handle();
-            };
-        };
 
-        bool afterAction() {
-            try {
-                for (auto const &action: this->postActions) {
-                    action->handle();
-                };
-            } catch (ActionException e) {
-                return false;
-            }
 
-            return true;
-        };
 
         /**
          * If more items are needed as reward a list of actions.
@@ -62,6 +46,13 @@ namespace Core {
         std::list<Action *> preActions;
         std::list<Action *> postActions;
 
+        bool beforeActions();
+
+        bool afterActions();
+
+        void assertPreConditions() const;
+
+        void assertPostConditions() const;
     };
 };
 

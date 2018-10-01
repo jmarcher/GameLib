@@ -3,3 +3,47 @@
 //
 
 #include "Action.hpp"
+#include "../Exceptions/Handler.hpp"
+
+bool Core::Action::beforeActions() {
+    // We process all actions that are marked as preActions
+    // we use the actions handle function for that.
+    // after that we should check if the preconditions are matched
+    try {
+        for (auto const &action: this->preActions) {
+            action->handle();
+        };
+    } catch (ActionException e) {
+        ExceptionHandler::getInstance()->addException(e);
+        return false;
+    }
+
+    this->assertPreConditions();
+
+    return true;
+};
+
+
+bool Core::Action::afterActions() {
+
+    this->assertPostConditions();
+
+    try {
+        for (auto const &action: this->postActions) {
+            action->handle();
+        };
+    } catch (ActionException e) {
+        ExceptionHandler::getInstance()->addException(e);
+        return false;
+    }
+
+    return true;
+};
+
+void Core::Action::assertPreConditions() const {
+    // TODO: Implement
+};
+
+void Core::Action::assertPostConditions() const {
+    // TODO: Implement
+};
