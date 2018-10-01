@@ -7,7 +7,6 @@
 
 #include <list>
 #include "../Characters/Character.hpp"
-#include "Exceptions/ActionException.hpp"
 #include "../Exceptions/Handler.hpp"
 
 namespace Core {
@@ -17,12 +16,22 @@ namespace Core {
         Action(Character &firstActor, Character &secondActor) {
             this->firstActor = &firstActor;
             this->secondActor = &secondActor;
+            this->item = nullptr;
         };
 
+        Action(Character &actor, Item &item) {
+            this->firstActor = &actor;
+            this->secondActor = nullptr;
+            this->item = &item;
+        };
+
+        /**
+         * Careful when overwriting this method, is method.
+         * It is used in order to complete an action.
+         */
         void handle();
 
-
-
+        virtual void action() = 0;
 
         /**
          * If more items are needed as reward a list of actions.
@@ -43,6 +52,7 @@ namespace Core {
     protected:
         Character *firstActor;
         Character *secondActor;
+        Item *item;
         std::list<Action *> preActions;
         std::list<Action *> postActions;
 

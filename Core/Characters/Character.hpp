@@ -20,7 +20,10 @@ namespace Core {
     class Character : public Object {
     public:
         explicit Character(unsigned int id, unsigned int hitPoints) : Object(id) {
-            basicStats.hitPoints = hitPoints;
+            this->basicStats.hitPoints = hitPoints;
+            this->basicStats.attack = 1;
+            this->basicStats.defense = 1;
+            this->basicStats.manaPoints = 1;
             this->solid = true;
             this->inventory = new Inventory();
         };
@@ -33,11 +36,14 @@ namespace Core {
             return basicStats.hitPoints;
         };
 
+        void setHP(unsigned int hitPoints) {
+            this->basicStats.hitPoints = hitPoints;
+        };
+
         Stats getBasicStats() const {
             return this->basicStats;
         };
     protected:
-        unsigned int hitPoints;
         Stats basicStats;
         Inventory *inventory;
     };

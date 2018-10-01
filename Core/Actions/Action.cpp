@@ -4,6 +4,7 @@
 
 #include "Action.hpp"
 #include "../Exceptions/Handler.hpp"
+#include "Exceptions/ActionException.hpp"
 
 bool Core::Action::beforeActions() {
     // We process all actions that are marked as preActions
@@ -13,7 +14,7 @@ bool Core::Action::beforeActions() {
         for (auto const &action: this->preActions) {
             action->handle();
         };
-    } catch (ActionException e) {
+    } catch (ActionException &e) {
         ExceptionHandler::getInstance()->addException(e);
         return false;
     }
@@ -32,7 +33,7 @@ bool Core::Action::afterActions() {
         for (auto const &action: this->postActions) {
             action->handle();
         };
-    } catch (ActionException e) {
+    } catch (ActionException &e) {
         ExceptionHandler::getInstance()->addException(e);
         return false;
     }
@@ -47,3 +48,11 @@ void Core::Action::assertPreConditions() const {
 void Core::Action::assertPostConditions() const {
     // TODO: Implement
 };
+
+
+void Core::Action::handle() {
+    this->beforeActions();
+    this->action();
+    // TODO: Give rewards if needed (or make action give it)
+    this->afterActions();
+}
