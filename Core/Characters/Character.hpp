@@ -19,14 +19,7 @@ namespace Core {
 
     class Character : public Object {
     public:
-        explicit Character(unsigned int id, unsigned int hitPoints) : Object(id) {
-            this->basicStats.hitPoints = hitPoints;
-            this->basicStats.attack = 1;
-            this->basicStats.defense = 1;
-            this->basicStats.manaPoints = 1;
-            this->solid = true;
-            this->inventory = new Inventory();
-        };
+        explicit Character(unsigned int id, Stats basicStats);
 
         void addItemToInventory(Item &item);
 

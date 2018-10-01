@@ -13,21 +13,14 @@ namespace Core {
 
     class Inventory : public Item {
     public:
-        Inventory() : Item(0) {
-            this->maxAmountItems = MAX_AMOUNT_ITEMS;
-        };
+        Inventory();
 
-        void add(Item &item) {
-            this->items.push_back(&item);
-        };
+        void add(Item &item);
 
-        const std::vector<Item *> &getItems() const {
-            return items;
-        }
+        const std::vector<Item *> &getItems() const;
 
-        unsigned short int amountItems() const {
-            return static_cast<unsigned short>(this->items.size());
-        };
+        unsigned short int amountItems() const;
+
     protected:
         std::vector<Item *> items;
         unsigned short int maxAmountItems;

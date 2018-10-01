@@ -11,33 +11,17 @@
 namespace Core {
     class Object {
     public:
-        Object() {
-            this->id = 0;
-            this->name = "Object: " + std::to_string(this->id);
-            this->solid = false;
-        };
+        Object();
 
-        explicit Object(unsigned int id) {
-            this->id = id;
-            this->name = "Object: " + std::to_string(this->id);
-            this->solid = false;
-        };
+        explicit Object(unsigned int id);
 
-        bool equals(Object &o) const {
-            return o.id == this->id;
-        };
+        bool equals(Object &o) const;
 
-        unsigned int getId() const {
-            return id;
-        }
+        unsigned int getId() const;
 
-        bool isSolid() const {
-            return this->solid;
-        }
+        bool isSolid() const;
 
-        const std::string &getName() const {
-            return name;
-        };
+        const std::string &getName() const;
 
         const std::string toString() const {
             return "Name: " + this->getName() + "\n" +

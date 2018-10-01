@@ -7,6 +7,7 @@
 
 #include "../Action.hpp"
 #include "../../Characters/Player.hpp"
+#include "../Exceptions/DeadTargetAttackException.hpp"
 
 namespace Core {
     class AttackAction : public Action {
@@ -17,10 +18,15 @@ namespace Core {
 
         void action() override {
             this->secondActor->setHP(this->secondActor->getHP() - 10);
-        }
+        };
 
     protected:
-        void assertPreConditions() const override;;
+        void assertPreConditions() const override{
+            Action::assertPreConditions();
+            if (this->firstActor->isDead() || this->secondActor->isDead()) {
+                throw new DeadTargetAttackException();
+            }
+        };
     };
 };
 

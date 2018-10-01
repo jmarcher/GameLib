@@ -10,8 +10,8 @@
 namespace Core {
     class Monster : public Character {
     public:
-        explicit Monster(unsigned int id, unsigned int hitPoints) : Character(id, hitPoints) {
-            this->name = "Monster: " +  std::to_string(id);
+        explicit Monster(unsigned int id, unsigned int hitPoints) : Character(id, {hitPoints}) {
+            this->name = "Monster: " + std::to_string(id);
         };
     };
 };

@@ -11,7 +11,10 @@
 namespace Core {
     class Player : public Character {
     public:
-        explicit Player() : Character(1, 100) {
+        explicit Player() : Character(1, {100}) {
+            this->dextery = 1;
+            this->charm = 1;
+            this->agility = 1;
         };
 
     protected:

@@ -10,10 +10,7 @@
 namespace Core {
     class Sword : public Item {
     public:
-        explicit Sword(unsigned int id) : Item(id) {
-            this->solid = true;
-            this->name = "Sword";
-        };
+        explicit Sword(unsigned int id);
     };
 };
 
