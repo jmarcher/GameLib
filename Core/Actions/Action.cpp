@@ -41,18 +41,17 @@ bool Core::Action::afterActions() {
     return true;
 };
 
-void Core::Action::assertPreConditions() const {
-    // TODO: Implement
-};
-
-void Core::Action::assertPostConditions() const {
-    // TODO: Implement
-};
-
-
 void Core::Action::handle() {
     this->beforeActions();
     this->action();
     // TODO: Give rewards if needed (or make action give it)
     this->afterActions();
+}
+
+Core::Action::~Action() {
+    this->firstActor = nullptr;
+    this->secondActor = nullptr;
+    this->item = nullptr;
+    this->preActions.clear();
+    this->postActions.clear();
 }

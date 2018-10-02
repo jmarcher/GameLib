@@ -21,11 +21,14 @@ namespace Core {
         };
 
     protected:
-        void assertPreConditions() const override{
-            Action::assertPreConditions();
+        void assertPreConditions() const {
             if (this->firstActor->isDead() || this->secondActor->isDead()) {
                 throw new DeadTargetAttackException();
             }
+        };
+
+        void assertPostConditions() const {
+            // Do nothing ...
         };
     };
 };

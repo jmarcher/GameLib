@@ -25,12 +25,23 @@ namespace Core {
             this->item = &item;
         };
 
+
         /**
          * Careful when overwriting this method, is method.
          * It is used in order to complete an action.
          */
         void handle();
 
+        /**
+         * Here is where the action logic resides.
+         * Complex actions may have various PreActions and PostActions.
+         * Each of those PreActions And PostActions can have different Preconditions.
+         *
+         * Note: If in the list of preActions one of them fails then this action will not
+         * get executed, if a the action gets executed and any PostAction fails there is no
+         * rollback, the action was already executed, therefore check that the preconditions are
+         * represent the reality and that the actions do not contradict them selves.
+         */
         virtual void action() = 0;
 
         /**
@@ -49,6 +60,8 @@ namespace Core {
             this->postActions.push_back(&action);
         };
 
+        virtual ~Action();
+
     protected:
         Character *firstActor;
         Character *secondActor;
@@ -56,13 +69,15 @@ namespace Core {
         std::list<Action *> preActions;
         std::list<Action *> postActions;
 
+
+        // Protected methods
         bool beforeActions();
 
         bool afterActions();
 
-        virtual void assertPreConditions() const;
+        void assertPreConditions() const {};
 
-        void assertPostConditions() const;
+        void assertPostConditions() const {};
     };
 };
 
