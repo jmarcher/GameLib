@@ -27,4 +27,4 @@ add_executable(GameRPG
         Core/Exceptions/Handler.hpp
         Core/Actions/Combat/AttackAction.cpp
         Core/Actions/Combat/AttackAction.hpp
-        Core/Actions/Exceptions/DeadTargetAttackException.hpp)
+        Core/Actions/Exceptions/DeadTargetAttackException.hpp Core/Characters/Relations/Relation.cpp Core/Characters/Relations/Relation.hpp)

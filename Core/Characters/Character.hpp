@@ -8,6 +8,7 @@
 #include <string>
 #include "../Objects/Object.hpp"
 #include "Utiles/Inventory.hpp"
+#include "Relations/Relation.hpp"
 
 namespace Core {
     struct Stats {
@@ -40,9 +41,15 @@ namespace Core {
         Stats getBasicStats() const {
             return this->basicStats;
         };
+
+        void addRelationship(Relation &relation);
+
+        const Relation& makeRelationship(Character & with, RelationType type, signed short int grade);
+
     protected:
         Stats basicStats;
         Inventory *inventory;
+        std::vector<Relation *> relationships;
     };
 };
 

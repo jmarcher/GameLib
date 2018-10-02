@@ -26,4 +26,15 @@ bool Core::Character::isAlive() const {
 
 bool Core::Character::isDead() const {
     return this->basicStats.hitPoints == 0;
+}
+
+void Core::Character::addRelationship(Core::Relation &relation) {
+    this->relationships.push_back(&relation);
+}
+
+const Core::Relation &
+Core::Character::makeRelationship(Core::Character &with, Core::RelationType type, signed short int grade) {
+    auto *relationship = new Relation(*this, with, type, grade);
+    this->relationships.push_back(relationship);
+    return *relationship;
 };
