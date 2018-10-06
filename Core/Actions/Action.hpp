@@ -8,9 +8,10 @@
 #include <list>
 #include "../Characters/Character.hpp"
 #include "../Exceptions/Handler.hpp"
+#include "Contracts/IAction.hpp"
 
 namespace Core {
-    class Action {
+    class Action: public IAction {
     public:
 
         Action(Character &firstActor, Character &secondActor) {
@@ -49,25 +50,30 @@ namespace Core {
          *
          * @return Gets the reward after the action is done.
          */
-        Item reward();
+        const Item * reward();
 
 
-        void addPreAction(Action &action) {
+        void addPreAction(IAction &action) {
             this->preActions.push_back(&action);
         };
 
-        void addPostAction(Action &action) {
+        void addPostAction(IAction &action) {
             this->postActions.push_back(&action);
         };
+
+        void setFirstActor(Character *firstActor);
+
+        void setSecondActor(Character *secondActor);
 
         virtual ~Action();
 
     protected:
+        // Properties
         Character *firstActor;
         Character *secondActor;
         Item *item;
-        std::list<Action *> preActions;
-        std::list<Action *> postActions;
+        std::list<IAction *> preActions;
+        std::list<IAction *> postActions;
 
 
         // Protected methods

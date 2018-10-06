@@ -10,6 +10,8 @@ namespace Core {
     // Define class name
     class Character;
 
+    class Action;
+
     enum RelationType {
         HATE = 0, LOVE = 1, TRUST = 2, RESPECT = 3, HONOR = 4,
 
@@ -44,6 +46,8 @@ namespace Core {
         signed short int getGrade() const;
 
         void setGrade(signed short int grade);
+
+        bool attemptAction(Action *action) const;
 
     protected:
         RelationType relationType;

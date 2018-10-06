@@ -3,6 +3,7 @@
 //
 
 #include "Relation.hpp"
+#include "../../Actions/Action.hpp"
 
 Core::Relation::Relation(Character &character1, Character &character2) {
     this->character1 = &character1;
@@ -60,4 +61,12 @@ Core::Relation::Relation(Core::Character &firstActor, Core::Character &relatedWi
     this->character2 = &relatedWith;
     this->relationType = relationType;
     this->grade = grade;
+}
+
+bool Core::Relation::attemptAction(Core::Action *action) const {
+    // FIXME: Do I need to change the actors?
+    action->setFirstActor(this->character1);
+    action->setFirstActor(this->character2);
+    action->handle();
+    return true;
 };

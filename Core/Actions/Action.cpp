@@ -54,4 +54,16 @@ Core::Action::~Action() {
     this->item = nullptr;
     this->preActions.clear();
     this->postActions.clear();
+};
+
+void Core::Action::setFirstActor(Core::Character *firstActor) {
+    Action::firstActor = firstActor;
+};
+
+void Core::Action::setSecondActor(Core::Character *secondActor) {
+    Action::secondActor = secondActor;
 }
+
+const Core::Item *Core::Action::reward() {
+    return nullptr;
+};
